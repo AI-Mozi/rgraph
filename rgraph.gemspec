@@ -4,7 +4,7 @@ require_relative "lib/rgraph/version"
 
 Gem::Specification.new do |spec|
   spec.name = "rgraph"
-  spec.version = Rgraph::VERSION
+  spec.version = RGraph::VERSION
   spec.authors = ["AI-Mozi"]
   spec.email = ["bieniek.milosz0@gmail.com"]
 

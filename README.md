@@ -1,4 +1,4 @@
-# Rgraph
+# RGraph
 
 TODO: Delete this and the text below, and describe your gem
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rgraph do
+RSpec.describe RGraph do
   it "has a version number" do
-    expect(Rgraph::VERSION).not_to be nil
+    expect(RGraph::VERSION).not_to be nil
   end
 end
