@@ -30,7 +30,7 @@ jobs:
           git clone https://github.com/igraph/igraph.git
           cd igraph
           mkdir build && cd build
-          cmake ..
+          cmake -DBUILD_SHARED_LIBS=ON ..
           make
           sudo make install
       - name: List installed igraph
