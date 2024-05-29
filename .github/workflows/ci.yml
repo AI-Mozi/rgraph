@@ -31,8 +31,8 @@ jobs:
           cd igraph
           mkdir build && cd build
           cmake -DBUILD_SHARED_LIBS=ON ..
-          cmake --build .
-          sudo cmake --install .
+          make
+          sudo make install
       - name: Run tests
         run: bundle exec rake test
 
