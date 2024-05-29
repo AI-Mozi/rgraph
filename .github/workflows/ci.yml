@@ -31,20 +31,8 @@ jobs:
           cd igraph
           mkdir build && cd build
           cmake -DBUILD_SHARED_LIBS=ON ..
-          make
-          sudo make install
-      - name: List installed igraph
-        run: |
-          find /usr/local -name "libigraph*"
-
-      - name: Update linker cache
-        run: |
-          sudo ldconfig
-
-      - name: Set LD_LIBRARY_PATH
-        run: |
-          echo "LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
-
+          cmake --build .
+          cmake --install .
       - name: Run tests
         run: bundle exec rake test
 
