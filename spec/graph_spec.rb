@@ -16,14 +16,14 @@ RSpec.describe RGraph::Graph do
       end
     end
 
-    # context "not directed" do
-    #   let(:directed) { false }
+    context "not directed" do
+      let(:directed) { false }
 
-    #   it "must create an empty grap" do
-    #     graph = subject
+      it "must create an empty grap" do
+        graph = subject
 
-    #     expect(graph).to be_a(RGraph::Graph)
-    #   end
-    # end
+        expect(graph).to be_a(RGraph::Graph)
+      end
+    end
   end
 end
