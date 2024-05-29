@@ -22,7 +22,7 @@ jobs:
       - name: Install igraph dependencies
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y cmake libxml2-dev
+          sudo apt-get install -y cmake make gcc g++ libxml2-dev
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3
       - name: Build igraph from source
@@ -31,9 +31,8 @@ jobs:
           cd igraph
           mkdir build && cd build
           cmake ..
-          cmake --build .
-          sudo cmake --install .
-          pwd
+          make
+          sudo make install
       - name: Run tests
         run: bundle exec rake test
 
