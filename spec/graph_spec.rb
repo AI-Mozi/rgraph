@@ -10,7 +10,7 @@ RSpec.describe RGraph::Graph do
       let(:directed) { true }
 
       it "must create an empty grap" do
-        graph = subject 
+        graph = subject
 
         expect(graph).to be_a(RGraph::Graph)
       end
