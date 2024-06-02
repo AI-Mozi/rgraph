@@ -11,10 +11,16 @@ module RGraph
     extend FFI::Library
     ffi_lib :igraph
 
-    attach_function :igraph_empty,       [Graph.by_ref, :int, :bool], :void
-    attach_function :igraph_add_edge,    [Graph.by_ref, :int, :int], :int
-    attach_function :igraph_destroy,     [Graph.by_ref], :void
-    attach_function :igraph_ecount,      [Graph.by_ref], :int
-    attach_function :igraph_is_directed, [Graph.by_ref], :bool
+    attach_function :igraph_empty,          [Graph.by_ref, :int, :bool], :void
+    attach_function :igraph_full,           [Graph.by_ref, :int, :bool, :bool], :void
+    attach_function :igraph_ring,           [Graph.by_ref, :int, :bool, :bool, :bool], :void
+    attach_function :igraph_kary_tree,      [Graph.by_ref, :int, :int, :int], :void
+    attach_function :igraph_star,           [Graph.by_ref, :int, :int, :int], :void
+    attach_function :igraph_wheel,          [Graph.by_ref, :int, :int, :int], :void
+
+    attach_function :igraph_add_edge,       [Graph.by_ref, :int, :int], :int
+    attach_function :igraph_destroy,        [Graph.by_ref], :void
+    attach_function :igraph_ecount,         [Graph.by_ref], :int
+    attach_function :igraph_is_directed,    [Graph.by_ref], :bool
   end
 end
