@@ -176,6 +176,12 @@ module RGraph
       new { |graph| Bindings.igraph_wheel(graph, size, mode, center) }
     end
 
+    #
+    # Frees memory allocated for the graph.
+    #
+    # @param [Graph] graph
+    #   Graph instance to free.
+    #
     def self.destroy(graph)
       Bindings.igraph_destroy(graph)
     end
