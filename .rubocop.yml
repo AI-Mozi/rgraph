@@ -14,3 +14,15 @@ Layout/LineLength:
 
 Lint/MissingSuper:
   Enabled: false
+
+Metrics:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
