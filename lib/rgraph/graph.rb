@@ -186,14 +186,42 @@ module RGraph
       Bindings.igraph_destroy(graph)
     end
 
+    #
+    # Adds an edge to a graph.
+    #
+    # @param [Integer] from
+    #   Id of the first vertex of the edge.
+    #
+    # @param [Integer] to
+    #   Id of the second vertex of the edge.
+    #
     def add_edge(from, to)
       Bindings.igraph_add_edge(self, from, to)
     end
 
+    #
+    # Counts number of edges in a graph.
+    #
+    # @return [Integer]
+    #
     def edges_count
       Bindings.igraph_ecount(self)
     end
 
+    #
+    # Count number of vertices in a graph.
+    #
+    # @return [Integer]
+    #
+    def vertices_count
+      Bindings.igraph_vcount(self)
+    end
+
+    #
+    # Indicates where the graph is directed.
+    #
+    # @return [Boolean]
+    #
     def directed?
       Bindings.igraph_is_directed(self)
     end

@@ -263,4 +263,62 @@ RSpec.describe RGraph::Graph do
       end
     end
   end
+
+  describe "#add_edge" do
+    subject { graph.add_edge(from, to) }
+
+    let(:graph) { RGraph::Graph.empty(2) }
+    let(:from)  { 1 }
+    let(:to)    { 1 }
+
+    it "must add an edge to a graph" do
+      subject
+    end
+  end
+
+  describe "#edges_count" do
+    subject { graph.edges_count }
+
+    let(:graph) { RGraph::Graph.empty(2) }
+
+    before do
+      graph.add_edge(1, 1)
+    end
+
+    it "must return number of edges in a graph" do
+      expect(subject).to eq(1)
+    end
+  end
+
+  describe "#vertices_count" do
+    subject { graph.vertices_count }
+
+    let(:graph) { RGraph::Graph.empty(2) }
+
+    it "must return number of vertices in a graph" do
+      expect(subject).to eq(2)
+    end
+  end
+
+  describe "#directed?" do
+    subject { graph.directed? }
+
+    let(:graph) { RGraph::Graph.empty(2, directed: directed) }
+
+    context "for directed graph" do
+      let(:directed) { true }
+
+      it "must return true" do
+        expect(subject).to be(true)
+      end
+    end
+
+    context "for undirected graph" do
+      let(:directed) { false }
+
+      it "must return false" do
+        expect(subject).to be(false)
+      end
+    end
+  end
 end
