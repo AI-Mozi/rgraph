@@ -20,6 +20,7 @@ module RGraph
     attach_function :igraph_wheel,             [Graph.by_ref, :int, :int, :int], :void
 
     attach_function :igraph_add_edge,          [Graph.by_ref, :int, :int], :int
+    attach_function :igraph_add_vertices,      [Graph.by_ref, :int, :pointer], :void
     attach_function :igraph_destroy,           [Graph.by_ref], :void
     attach_function :igraph_copy,              [Graph.by_ref, Graph.by_ref], :void
 

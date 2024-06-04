@@ -11,7 +11,7 @@ RSpec.describe RGraph::Graph do
     context "when directed is set to true" do
       let(:directed) { true }
 
-      it "must create an empty directed grap" do
+      it "must create an empty directed graph" do
         graph = subject
 
         expect(graph).to be_a(RGraph::Graph)
@@ -21,7 +21,7 @@ RSpec.describe RGraph::Graph do
     context "when directed is set to false" do
       let(:directed) { false }
 
-      it "must create an empty undirected grap" do
+      it "must create an empty undirected graph" do
         graph = subject
 
         expect(graph).to be_a(RGraph::Graph)
@@ -356,6 +356,19 @@ RSpec.describe RGraph::Graph do
 
       expect(result).to be_a(RGraph::Graph)
       expect(result == graph).to be(true)
+    end
+  end
+
+  describe "#add_vertices" do
+    subject { graph.add_vertices(number) }
+
+    let(:graph)  { RGraph::Graph.empty(0) }
+    let(:number) { 2 }
+
+    it "must add vertices to a graph" do
+      subject
+
+      expect(graph.vertices_count).to eq(2)
     end
   end
 end

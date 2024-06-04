@@ -252,5 +252,15 @@ module RGraph
     def directed?
       Bindings.igraph_is_directed(self)
     end
+
+    #
+    # Adds a vertices to a graph.
+    #
+    # @param [Integer] number
+    #   Number of vertices to add.
+    #
+    def add_vertices(number)
+      Bindings.igraph_add_vertices(self, number, nil)
+    end
   end
 end
