@@ -187,6 +187,33 @@ module RGraph
     end
 
     #
+    # Checks if two graphs are identical.
+    #
+    # @param [Graph] other
+    #   Graph to compare with.
+    #
+    # @return [Boolean]
+    #
+    def ==(other)
+      result_pointer = FFI::MemoryPointer.new(:bool)
+      Bindings.igraph_is_same_graph(self, other, result_pointer)
+      result_pointer.read_uchar != 0
+    end
+
+    #
+    # Creates a copy of a graph
+    #
+    # @param [Graph] graph
+    #   Graph object to copy.
+    #
+    # @return [Graph]
+    #   The graph instance with copied attributes.
+    #
+    def copy
+      self.class.new { |new_graph| Bindings.igraph_copy(new_graph, self) }
+    end
+
+    #
     # Adds an edge to a graph.
     #
     # @param [Integer] from

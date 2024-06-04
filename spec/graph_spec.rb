@@ -273,6 +273,8 @@ RSpec.describe RGraph::Graph do
 
     it "must add an edge to a graph" do
       subject
+
+      expect(graph.edges_count).to be(1)
     end
   end
 
@@ -319,6 +321,41 @@ RSpec.describe RGraph::Graph do
       it "must return false" do
         expect(subject).to be(false)
       end
+    end
+  end
+
+  describe "#==" do
+    subject { graph == other }
+
+    let(:graph) { RGraph::Graph.empty(2) }
+
+    context "for the same graphs" do
+      let(:other) { RGraph::Graph.empty(2) }
+
+      it "must return true" do
+        expect(subject).to be(true)
+      end
+    end
+
+    context "for different graphs" do
+      let(:other) { RGraph::Graph.empty(4) }
+
+      it "must return false" do
+        expect(subject).to be(false)
+      end
+    end
+  end
+
+  describe "#copy" do
+    subject { graph.copy }
+
+    let(:graph) { RGraph::Graph.empty(2) }
+
+    it "must create new copy of a graph" do
+      result = subject
+
+      expect(result).to be_a(RGraph::Graph)
+      expect(result == graph).to be(true)
     end
   end
 end
