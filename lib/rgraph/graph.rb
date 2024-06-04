@@ -260,6 +260,10 @@ module RGraph
     #   Number of vertices to add.
     #
     def add_vertices(number)
+      if number < 0
+        raise(ArgumentError, "#{number.inspect} is an invalid value. Must be positive.")
+      end
+
       Bindings.igraph_add_vertices(self, number, nil)
     end
   end

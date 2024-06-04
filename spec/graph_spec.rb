@@ -370,5 +370,15 @@ RSpec.describe RGraph::Graph do
 
       expect(graph.vertices_count).to eq(2)
     end
+
+    context "for invalid number of vertices to add" do
+      let(:number) { -1 }
+
+      it "must raise an ArgumentError" do
+        expect {
+          subject
+        }.to raise_error(ArgumentError, "#{number.inspect} is an invalid value. Must be positive.")
+      end
+    end
   end
 end
