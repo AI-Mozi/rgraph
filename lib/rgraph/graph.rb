@@ -236,6 +236,25 @@ module RGraph
     end
 
     #
+    # Checks if the edge exists in the graph.
+    #
+    # @param [Integer] from
+    #   Start point of the edge.
+    #
+    # @param [Integer] to
+    #   End point of the edge.
+    #
+    # @param [Boolean] directed
+    #   Indicates whether to search for directed edges
+    #   in a directed graph.
+    #
+    def edge?(from, to, directed: false)
+      eid = FFI::MemoryPointer.new(:int)
+      Bindings.igraph_get_eid(self, eid, from, to, directed, false)
+      eid.read_int >= 0
+    end
+
+    #
     # Count number of vertices in a graph.
     #
     # @return [Integer]
@@ -265,6 +284,19 @@ module RGraph
       end
 
       Bindings.igraph_add_vertices(self, number, nil)
+    end
+
+    #
+    # Removes loops and/or multiple edges from the graph.
+    #
+    # @param [Boolean] multiple
+    #   Indicates whether to remove multiple edges.
+    #
+    # @param [Boolen] loops
+    #   Indicate whether to remove loops.
+    #
+    def simplify(multiple: true, loops: true)
+      Bindings.igraph_simplify(self, multiple, loops, nil)
     end
   end
 end

@@ -381,4 +381,50 @@ RSpec.describe RGraph::Graph do
       end
     end
   end
+
+  describe "#simplify" do
+    subject { graph.simplify }
+
+    let(:graph) { RGraph::Graph.empty(3) }
+
+    before do
+      graph.add_edge(0, 1)
+      graph.add_edge(0, 1)
+      graph.add_edge(1, 1)
+    end
+
+    it "must remove multiple edges and loops" do
+      subject
+
+      expect(graph.edges_count).to eq(1)
+      expect(graph.edge?(1, 1)).to be(false)
+    end
+  end
+
+  describe "#edge?" do
+    subject { graph.edge?(from, to) }
+
+    let(:graph) { RGraph::Graph.empty(3) }
+    let(:from)  { 0 }
+    let(:to)    { 1 }
+
+    context "when graph contains the edge" do
+      before do
+        graph.add_edge(from, to)
+      end
+
+      it "must return true" do
+        expect(subject).to be(true)
+      end
+    end
+
+    context "when graph does not contain the edge" do
+      let(:from) { 1 }
+      let(:to)   { 1 }
+
+      it "must return false" do
+        expect(subject).to be(false)
+      end
+    end
+  end
 end

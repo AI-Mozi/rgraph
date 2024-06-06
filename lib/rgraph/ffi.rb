@@ -23,12 +23,14 @@ module RGraph
     attach_function :igraph_add_vertices,      [Graph.by_ref, :int, :pointer], :void
     attach_function :igraph_destroy,           [Graph.by_ref], :void
     attach_function :igraph_copy,              [Graph.by_ref, Graph.by_ref], :void
+    attach_function :igraph_simplify,          [Graph.by_ref, :bool, :bool, :pointer], :void
 
     attach_function :igraph_ecount,            [Graph.by_ref], :int
     attach_function :igraph_vcount,            [Graph.by_ref], :int
 
     attach_function :igraph_is_directed,       [Graph.by_ref], :bool
     attach_function :igraph_is_same_graph,     [Graph.by_ref, Graph.by_ref, :pointer], :void
+    attach_function :igraph_get_eid,           [Graph.by_ref, :pointer, :int, :int, :bool, :bool], :int
 
     # Vectors
     attach_function :igraph_vector_init,       [Vector.by_ref, :int], :void
