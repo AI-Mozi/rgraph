@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Ruby FFI bindings for igraph library."
   spec.description = "Ruby FFI bindings for igraph library."
   spec.homepage = "https://github.com/AI-Mozi/rgraph"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.metadata["allowed_push_host"] = "https://github.com/AI-Mozi/rgraph"
 
@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

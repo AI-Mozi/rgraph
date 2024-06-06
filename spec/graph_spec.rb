@@ -4,7 +4,7 @@ require_relative "../lib/rgraph/constants"
 
 RSpec.describe RGraph::Graph do
   describe ".empty" do
-    subject { described_class.empty(size, directed: directed) }
+    subject { described_class.empty(size, directed:) }
 
     let(:size) { 2 }
 
@@ -30,7 +30,7 @@ RSpec.describe RGraph::Graph do
   end
 
   describe ".full" do
-    subject { described_class.full(size, directed: directed, loops: loops) }
+    subject { described_class.full(size, directed:, loops:) }
 
     let(:size) { 2 }
 
@@ -94,7 +94,7 @@ RSpec.describe RGraph::Graph do
   end
 
   describe ".ring" do
-    subject { described_class.ring(size, directed: directed, mutual: mutual, circular: circular) }
+    subject { described_class.ring(size, directed:, mutual:, circular:) }
 
     let(:size)     { 2 }
     let(:directed) { false }
@@ -305,7 +305,7 @@ RSpec.describe RGraph::Graph do
   describe "#directed?" do
     subject { graph.directed? }
 
-    let(:graph) { RGraph::Graph.empty(2, directed: directed) }
+    let(:graph) { RGraph::Graph.empty(2, directed:) }
 
     context "for directed graph" do
       let(:directed) { true }
