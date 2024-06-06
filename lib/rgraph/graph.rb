@@ -177,6 +177,76 @@ module RGraph
     end
 
     #
+    # Generates a random (Erdős-Rényi) graph.
+    #
+    # @param [Constants::ErdosRenyi] type
+    #   Type of the Erdős-Rényi graph.
+    #
+    # @param [Integer] size
+    #   Number of vertices in the graph.
+    #
+    # @param [Integer] p_or_m
+    #   This is the p parameter for
+    #   G(n,p) graphs and the m parameter for G(n,m) graphs.
+    #
+    # @param [Boolean] directed
+    #   Indicates whether to create a directed graph.
+    #
+    # @param [Boolean] loops
+    #   Indicates whether to create loops.
+    #
+    # @return [Graph]
+    #   The graph instance.
+    #
+    def self.erdos_renyi_game(type, size, p_or_m, directed: false, loops: false)
+      unless [Constants::ErdosRenyi::GNP, Constants::ErdosRenyi::GNM].include?(type)
+        raise(ArgumentError, "#{type.inspect} is an invalid Erdos Renyi type.")
+      end
+
+      new { |graph| Bindings.igraph_erdos_renyi_game(graph, type, size, p_or_m, directed, loops) }
+    end
+
+    #
+    # Generates Watts-Strogatz small-world model.
+    #
+    # @param [Integer] dim
+    #   The dimension of the lattice.
+    #
+    # @param [Integer] size
+    #   The size of the lattice along each dimension.
+    #
+    # @param [Integer] nei
+    #   The size of the neighborhood for each vertex.
+    #
+    # @param [Float] prob
+    #   The rewriting probability.
+    #
+    # @param [Boolean] loops
+    #   Indicates whether to create loops.
+    #
+    # @param [Boolean] multiple
+    #   Indicates whether to allow multiple edges.
+    #
+    # @return [Graph]
+    #   The graph instace.
+    #
+    def self.watts_strogatz_game(dim, size, nei, prob, loops: false, multiple: false)
+      if dim < 1
+        raise(ArgumentError, "#{dim.inspect} is an invalid value. Should be at least one.")
+      end
+
+      if size < 1
+        raise(ArgumentError, "#{size.inspect} is an invalid value. Should be at least one.")
+      end
+
+      if prob < 0 || prob > 1
+        raise(ArgumentError, "#{prob.inspect} is an invalid value. Should be between 0 and 1.")
+      end
+
+      new { |graph| Bindings.igraph_watts_strogatz_game(graph, dim, size, nei, prob, loops, multiple) }
+    end
+
+    #
     # Frees memory allocated for the graph.
     #
     # @param [Graph] graph

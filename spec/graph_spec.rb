@@ -427,4 +427,73 @@ RSpec.describe RGraph::Graph do
       end
     end
   end
+
+  describe ".erdos_renyi_game" do
+    subject { described_class.erdos_renyi_game(type, size, p_or_m) }
+
+    let(:size)   { 2 }
+    let(:p_or_m) { 2 }
+    let(:type)   { RGraph::Constants::ErdosRenyi::GNP }
+
+    describe "when invalid type is given" do
+      let(:type) { -1 }
+
+      it "must raise an ArgumentError" do
+        expect {
+          subject
+        }.to raise_error(ArgumentError, "#{type.inspect} is an invalid Erdos Renyi type.")
+      end
+    end
+
+    it "must create a graph" do
+      graph = subject
+
+      expect(graph).to be_a(RGraph::Graph)
+    end
+  end
+
+  describe ".watts_strogatz_game" do
+    subject { described_class.watts_strogatz_game(dim, size, nei, prob) }
+
+    let(:dim)  { 2 }
+    let(:size) { 2 }
+    let(:nei)  { 1 }
+    let(:prob) { 0.5 }
+
+    context "when dim is less than 1" do
+      let(:dim) { 0 }
+
+      it "must raise an ArgumentError" do
+        expect {
+          subject
+        }.to raise_error(ArgumentError, "#{dim.inspect} is an invalid value. Should be at least one.")
+      end
+    end
+
+    context "when size is less than 1" do
+      let(:size) { 0 }
+
+      it "must raise an ArgumentError" do
+        expect {
+          subject
+        }.to raise_error(ArgumentError, "#{size.inspect} is an invalid value. Should be at least one.")
+      end
+    end
+
+    context "when prob is not between 0 and 1" do
+      let(:prob) { 2 }
+
+      it "must raise an ArgumentError" do
+        expect {
+          subject
+        }.to raise_error(ArgumentError, "#{prob.inspect} is an invalid value. Should be between 0 and 1.")
+      end
+    end
+
+    it "must create a graph" do
+      graph = subject
+
+      expect(graph).to be_a(RGraph::Graph)
+    end
+  end
 end

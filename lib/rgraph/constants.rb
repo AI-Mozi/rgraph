@@ -20,5 +20,13 @@ module RGraph
       UNDIRECTED = 2
       MUTUAL     = 3
     end
+
+    #
+    # Types of the Erdos Renyi graphs.
+    #
+    module ErdosRenyi
+      GNP = 0
+      GNM = 1
+    end
   end
 end
