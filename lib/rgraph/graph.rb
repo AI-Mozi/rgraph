@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "vector"
+require_relative "io/graph_ml"
 
 module RGraph
   #
@@ -8,6 +9,8 @@ module RGraph
   #
   class Graph < FFI::Struct
     attr_reader :pointer
+
+    include IO::GraphML
 
     layout :n, :int,
            :directed, :bool,

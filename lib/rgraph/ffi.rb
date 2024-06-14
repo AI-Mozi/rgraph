@@ -38,5 +38,8 @@ module RGraph
     attach_function :igraph_vector_init,         [Vector.by_ref, :int], :void
     attach_function :igraph_vector_destroy,      [Vector.by_ref], :void
     attach_function :igraph_vector_init_array,   [Vector.by_ref, :pointer, :int], :void
+
+    # IO
+    attach_function :igraph_write_graph_graphml, [Graph.by_ref, :pointer, :bool], :int
   end
 end

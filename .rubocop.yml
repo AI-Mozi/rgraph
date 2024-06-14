@@ -28,3 +28,6 @@ Style/NumericPredicate:
 
 Style/BlockDelimiters:
   Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
