@@ -41,5 +41,6 @@ module RGraph
 
     # IO
     attach_function :igraph_write_graph_graphml, [Graph.by_ref, :pointer, :bool], :int
+    attach_function :igraph_read_graph_graphml,  [Graph.by_ref, :pointer, :int], :int
   end
 end

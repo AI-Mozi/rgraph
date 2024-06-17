@@ -31,3 +31,6 @@ Style/BlockDelimiters:
 
 Style/SymbolArray:
   Enabled: false
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
