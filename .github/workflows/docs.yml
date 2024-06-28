@@ -3,7 +3,7 @@ name: Deploy YARD documentation
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
