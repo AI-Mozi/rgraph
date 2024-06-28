@@ -4,6 +4,9 @@ require "ffi"
 require_relative "../bindings/c"
 
 module RGraph
+  #
+  # Igraph IO
+  #
   module IO
     #
     # GraphML
@@ -47,7 +50,7 @@ module RGraph
         # @param [String] path
         #   Path to an input file.
         #
-        # @param [Integer] instream.
+        # @param [Integer] instream
         #   A graphg index.
         #
         # @return [Graph]

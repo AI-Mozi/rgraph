@@ -80,7 +80,7 @@ module RGraph
     #   Indicates whether to create mutual edges in directed graph.
     #   Ignored for undirected graphs.
     #
-    # @param [Boolean] circural
+    # @param [Boolean] circular
     #   Indicates whether to create a closed ring or an open path.
     #
     # @return [Graph]
@@ -172,7 +172,7 @@ module RGraph
     # @param [Integer] center
     #   The id of the center vertex.
     #
-    # @raturn [Graph]
+    # @return [Graph]
     #   The graph instance.
     #
     def self.wheel(size, mode, center)
@@ -275,9 +275,6 @@ module RGraph
 
     #
     # Creates a copy of a graph
-    #
-    # @param [Graph] graph
-    #   Graph object to copy.
     #
     # @return [Graph]
     #   The graph instance with copied attributes.
