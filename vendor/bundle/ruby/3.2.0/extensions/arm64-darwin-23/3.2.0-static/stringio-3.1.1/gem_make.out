@@ -1,0 +1,18 @@
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+/Users/mozi/.rubies/ruby-3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-z21pua sitelibdir\=./.gem.20240628-56318-z21pua clean
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-z21pua sitelibdir\=./.gem.20240628-56318-z21pua
+compiling stringio.c
+linking shared-object stringio.bundle
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-z21pua sitelibdir\=./.gem.20240628-56318-z21pua install
+/opt/homebrew/bin/ginstall -c -m 0755 stringio.bundle ./.gem.20240628-56318-z21pua
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.1/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-z21pua sitelibdir\=./.gem.20240628-56318-z21pua clean

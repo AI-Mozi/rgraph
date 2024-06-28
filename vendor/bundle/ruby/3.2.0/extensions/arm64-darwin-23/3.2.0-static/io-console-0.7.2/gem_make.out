@@ -1,0 +1,27 @@
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/io-console-0.7.2/ext/io/console
+/Users/mozi/.rubies/ruby-3.2.2/bin/ruby extconf.rb
+checking for rb_io_path()... no
+checking for rb_io_descriptor()... yes
+checking for rb_io_get_write_io()... yes
+checking for rb_io_closed_p()... no
+checking for rb_io_open_descriptor()... no
+checking for termios.h... yes
+checking for cfmakeraw() in termios.h... yes
+checking for sys/ioctl.h... yes
+checking for HAVE_RUBY_FIBER_SCHEDULER_H... yes
+creating Makefile
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/io-console-0.7.2/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-6cb2oy sitelibdir\=./.gem.20240628-56318-6cb2oy clean
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/io-console-0.7.2/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-6cb2oy sitelibdir\=./.gem.20240628-56318-6cb2oy
+compiling console.c
+linking shared-object io/console.bundle
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/io-console-0.7.2/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-6cb2oy sitelibdir\=./.gem.20240628-56318-6cb2oy install
+/opt/homebrew/bin/ginstall -c -m 0755 console.bundle ./.gem.20240628-56318-6cb2oy/io
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/io-console-0.7.2/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-6cb2oy sitelibdir\=./.gem.20240628-56318-6cb2oy clean

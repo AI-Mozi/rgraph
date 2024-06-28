@@ -1,0 +1,19 @@
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+/Users/mozi/.rubies/ruby-3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-3deasf sitelibdir\=./.gem.20240628-56318-3deasf clean
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-3deasf sitelibdir\=./.gem.20240628-56318-3deasf
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.bundle
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-3deasf sitelibdir\=./.gem.20240628-56318-3deasf install
+/opt/homebrew/bin/ginstall -c -m 0755 debug.bundle ./.gem.20240628-56318-3deasf/debug
+
+current directory: /Users/mozi/development/ruby/rgraph/vendor/bundle/ruby/3.2.0/gems/debug-1.9.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20240628-56318-3deasf sitelibdir\=./.gem.20240628-56318-3deasf clean
