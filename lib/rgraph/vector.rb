@@ -10,7 +10,7 @@ module RGraph
     attr_reader :pointer
 
     layout :stor_begin, :pointer,
-           :stor_begin, :pointer,
+           :stor_end,   :pointer,
            :end,        :pointer
 
     def initialize
