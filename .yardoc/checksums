@@ -1,8 +1,0 @@
-lib/rgraph.rb ffe7b59486cd09cf566c087127286864b0125f74
-lib/rgraph/ffi.rb a0e2c1455d9e66d4a05df6878a3be2391f5a427d
-lib/rgraph/graph.rb 6939b3ad86599dcc88b487ec701f1a62fd87a887
-lib/rgraph/vector.rb 9097f4ec77f0fb88f1f29a6078eab0cd94f0a075
-lib/rgraph/version.rb dd7acb47b646ddf91d63eb1a80294503b5f3ec18
-lib/rgraph/constants.rb 6225665445318a6e2a1446d95bbeac4fe5d09557
-lib/rgraph/bindings/c.rb f4131fdee83e9bb99a200045b27ea34327371935
-lib/rgraph/io/graph_ml.rb 7461dd729376c5a99dd4453b228ca4f1f86b4756
