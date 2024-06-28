@@ -1,0 +1,52 @@
+name: Deploy YARD documentation
+
+on:
+  push:
+    branches:
+      - master  # Trigger workflow on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'  # Change to the version of Ruby you are using
+
+    - name: Install dependencies
+      run: |
+        gem install yard
+        bundle install
+
+    - name: Generate YARD documentation
+      run: yard doc
+
+    - name: Upload YARD documentation to artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        name: yard-doc
+        path: doc
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v1
+      with:
+        github_token: ${{ secrets.YARD_DEPLOY }}
+        artifact_name: yard-doc
