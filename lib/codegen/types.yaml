@@ -1,0 +1,347 @@
+# Basic types
+
+ERROR:
+  RB_TYPE: int
+  FFI_RETURN_TYPE: handle_igraph_error_t
+
+BOOLEAN:
+  RB_TYPE: bool
+  INCONV:
+    IN: "%C% = !!%I%"
+
+INTEGER:
+  RB_TYPE: int
+
+REAL:
+  RB_TYPE: float
+
+INT:
+  RB_TYPE: int
+
+DOUBLE:
+  RB_TYPE: float
+
+CSTRING:
+  RB_TYPE: str
+  INCONV:
+    IN: '%C% = %I%.encode("utf-8")'
+    OUT: "%C% = c_char_p()"
+  OUTCONV: "%I% = bytes_to_str(%C%)"
+
+# Vectors, matrices
+
+VECTOR:
+  INCONV:
+    IN: "%C% = array_to_igraph_vector_t(%I%)"
+    OUT: "%C% = _Vector.create(0)"
+  OUTCONV: "%I% = igraph_vector_t_to_numpy_array(%C%)"
+
+VECTOR_INT:
+  INCONV:
+    IN: "%C% = array_to_igraph_vector_int_t(%I%)"
+    OUT: "%C% = _VectorInt.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_t_to_numpy_array(%C%)"
+
+VECTOR_BOOL:
+  INCONV:
+    IN: "%C% = array_to_igraph_vector_bool_t(%I%)"
+    OUT: "%C% = _VectorBool.create(0)"
+  OUTCONV: "%I% = igraph_vector_bool_t_to_numpy_array(%C%)"
+
+INDEX_VECTOR:
+  INCONV:
+    IN: "%C% = iterable_to_igraph_vector_int_t_view(%I%)"
+    OUT: "%C% = _VectorInt.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_t_to_numpy_array(%C%)"
+
+MATRIX:
+  INCONV:
+    IN: "%C% = sequence_to_igraph_matrix_t_view(%I%)"
+    OUT: "%C% = _Matrix.create(0)"
+  OUTCONV: "%I% = igraph_matrix_t_to_numpy_array(%C%)"
+
+MATRIX_INT:
+  INCONV:
+    IN: "%C% = sequence_to_igraph_matrix_int_t_view(%I%)"
+    OUT: "%C% = _MatrixInt.create(0)"
+  OUTCONV: "%I% = igraph_matrix_int_t_to_numpy_array(%C%)"
+
+# Graph, vertex and edge related classes
+
+GRAPH:
+  RB_TYPE: Graph
+  INCONV:
+    OUT: "%C% = RGraph::Internal::Graph.new"
+  OUTCONV:
+    OUT: |-
+      %I% = RGraph::Graph.new(_wrap: %C%)
+    INOUT: ~
+
+VERTEX:
+  RB_TYPE: VertexLike
+  RB_RETURN_TYPE: int
+  INCONV:
+    IN: "%C% = vertexlike_to_igraph_integer_t(%I%)"
+    OUT: "%C% = igraph_integer_t(0)"
+
+VERTEX_COLORS:
+  RB_TYPE: Iterable[int]
+  RB_RETURN_TYPE: IntArray
+  INCONV:
+    IN: "%C% = vertex_colors_to_igraph_vector_int_t_view(%I%, %I1%)"
+    INOUT: "%C% = vertex_colors_to_igraph_vector_int_t(%I%, %I1%)"
+    OUT: "%C% = _VectorInt.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_t_to_numpy_array(%C%)"
+
+VERTEX_INDICES:
+  RB_TYPE: Iterable[VertexLike]
+  RB_RETURN_TYPE: IntArray
+  INCONV:
+    IN: "%C% = iterable_vertex_indices_to_igraph_vector_int_t(%I%)"
+    OUT: "%C% = _VectorInt.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_t_to_numpy_array(%C%)"
+
+VERTEX_INDICES_LIST:
+  RB_TYPE: Iterable[Iterable[VertexLike]]
+  RB_RETURN_TYPE: list[IntArray]
+  INCONV:
+    IN: "%C% = iterable_of_vertex_index_iterable_to_igraph_vector_int_list_t(%I%)"
+    OUT: "%C% = _VectorIntList.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_list_t_to_list_of_numpy_array(%C%)"
+
+VERTEX_INDEX_PAIRS:
+  RB_TYPE: Iterable[VertexPair]
+  INCONV:
+    IN: "%C% = vertex_pairs_to_igraph_vector_int_t(%I%)"
+    OUT: "%C% = _VectorInt.create(0)"
+
+VERTEX_SELECTOR:
+  RB_TYPE: VertexSelector
+  INCONV:
+    IN: "%C% = vertex_selector_to_igraph_vs_t(%I%, %I1%)"
+  DEFAULT:
+    ALL: '"all"'
+  CALL: "%C%.unwrap()"
+
+VERTEX_QTYS:
+  RB_TYPE: Iterable[float]
+  RB_RETURN_TYPE: RealArray
+  INCONV:
+    IN: "%C% = vertex_qtys_to_igraph_vector_t_view(%I%, %I1%)"
+    INOUT: "%C% = vertex_qtys_to_igraph_vector_t(%I%, %I1%)"
+    OUT: "%C% = _Vector.create(0)"
+  OUTCONV: "%I% = igraph_vector_t_to_numpy_array(%C%)"
+
+VERTEX_WEIGHTS:
+  RB_TYPE: Iterable[float]
+  RB_RETURN_TYPE: RealArray
+  INCONV:
+    IN: "%C% = vertex_weights_to_igraph_vector_t_view(%I%, %I1%)"
+    INOUT: "%C% = vertex_weights_to_igraph_vector_t(%I%, %I1%)"
+    OUT: "%C% = _Vector.create(0)"
+  OUTCONV: "%I% = igraph_vector_t_to_numpy_array(%C%)"
+
+EDGE:
+  RB_TYPE: EdgeLike
+  RB_RETURN_TYPE: int
+  INCONV:
+    IN: "%C% = edgelike_to_igraph_integer_t(%I%)"
+    OUT: "%C% = igraph_integer_t(0)"
+
+EDGE_COLORS:
+  RB_TYPE: Iterable[int]
+  RB_RETURN_TYPE: IntArray
+  INCONV:
+    IN: "%C% = edge_colors_to_igraph_vector_int_t_view(%I%, %I1%)"
+    INOUT: "%C% = edge_colors_to_igraph_vector_int_t(%I%, %I1%)"
+    OUT: "%C% = _VectorInt.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_t_to_numpy_array(%C%)"
+
+EDGE_INDICES:
+  RB_TYPE: Iterable[EdgeLike]
+  RB_RETURN_TYPE: IntArray
+  INCONV:
+    IN: "%C% = iterable_edge_indices_to_igraph_vector_int_t(%I%)"
+    OUT: "%C% = _VectorInt.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_t_to_numpy_array(%C%)"
+
+EDGE_INDICES_LIST:
+  RB_TYPE: Iterable[Iterable[EdgeLike]]
+  RB_RETURN_TYPE: list[IntArray]
+  INCONV:
+    IN: "%C% = iterable_of_edge_index_iterable_to_igraph_vector_int_list_t(%I%)"
+    OUT: "%C% = _VectorIntList.create(0)"
+  OUTCONV: "%I% = igraph_vector_int_list_t_to_list_of_numpy_array(%C%)"
+
+EDGE_SELECTOR:
+  RB_TYPE: EdgeSelector
+  INCONV:
+    IN: "%C% = edge_selector_to_igraph_es_t(%I%, %I1%)"
+  DEFAULT:
+    ALL: '"all"'
+  CALL: "%C%.unwrap()"
+
+EDGE_WEIGHTS:
+  RB_TYPE: Iterable[float]
+  RB_RETURN_TYPE: RealArray
+  INCONV:
+    IN: "%C% = edge_weights_to_igraph_vector_t_view(%I%, %I1%)"
+    INOUT: "%C% = edge_weights_to_igraph_vector_t(%I%, %I1%)"
+    OUT: "%C% = _Vector.create(0)"
+  OUTCONV: "%I% = igraph_vector_t_to_numpy_array(%C%)"
+
+EDGE_LENGTHS:
+  RB_TYPE: Iterable[float]
+  RB_RETURN_TYPE: RealArray
+  INCONV:
+    IN: "%C% = edge_lengths_to_igraph_vector_t_view(%I%, %I1%)"
+    INOUT: "%C% = edge_lengths_to_igraph_vector_t(%I%, %I1%)"
+    OUT: "%C% = _Vector.create(0)"
+  OUTCONV: "%I% = igraph_vector_t_to_numpy_array(%C%)"
+
+EDGE_CAPACITIES:
+  RB_TYPE: Iterable[float]
+  RB_RETURN_TYPE: RealArray
+  INCONV:
+    IN: "%C% = edge_capacities_to_igraph_vector_t_view(%I%, %I1%)"
+    INOUT: "%C% = edge_capacities_to_igraph_vector_t(%I%, %I1%)"
+    OUT: "%C% = _Vector.create(0)"
+  OUTCONV: "%I% = igraph_vector_t_to_numpy_array(%C%)"
+
+BIPARTITE_TYPES:
+  RB_TYPE: Iterable[Any]
+  RB_RETURN_TYPE: BoolArray
+  INCONV:
+    IN: "%C% = iterable_to_igraph_vector_bool_t_view(%I%)" 
+    INOUT: "%C% = iterable_to_igraph_vector_bool_t(%I%)"
+    OUT: "%C% = _VectorBool.create(0)"
+
+# Attribute handling
+
+ATTRIBUTES:
+  RB_TYPE: ~
+
+EDGE_ATTRIBUTE_COMBINATION:
+  RB_TYPE: AttributeCombinationSpecification
+  INCONV:
+    IN: "%C% = mapping_to_attribute_combination_t(%I%)"
+  DEFAULT:
+    Default: "None"
+
+VERTEX_ATTRIBUTE_COMBINATION:
+  RB_TYPE: AttributeCombinationSpecification
+  INCONV:
+    IN: "%C% = mapping_to_attribute_combination_t(%I%)"
+  DEFAULT:
+    Default: "None"
+
+# File I/O
+
+INFILE:
+  RB_TYPE: FileLike
+  RB_RETURN_TYPE: c_int
+  INCONV:
+    IN: '%C% = %S%.enter_context(any_to_file_ptr(%I%, "r"))'
+  FLAGS: stack
+
+OUTFILE:
+  RB_TYPE: FileLike
+  RB_RETURN_TYPE: c_int
+  INCONV:
+    IN: '%C% = %S%.enter_context(any_to_file_ptr(%I%, "w"))'
+  FLAGS: stack
+
+# Enums
+
+ADJACENCY_MODE:
+  RB_TYPE: AdjacencyMode
+
+BARABASI_ALGORITHM:
+  RB_TYPE: BarabasiAlgorithm
+
+COMMCMP:
+  RB_TYPE: CommunityComparison
+
+CONNECTEDNESS:
+  RB_TYPE: Connectedness
+
+DEGSEQ_MODE:
+  RB_TYPE: DegreeSequenceMode
+
+EIGENALGO:
+  RB_TYPE: EigenAlgorithm
+
+ERDOS_RENYI_TYPE:
+  RB_TYPE: ErdosRenyiType
+
+FAS_ALGORITHM:
+  RB_TYPE: FeedbackArcSetAlgorithm
+
+FWALGORITHM:
+  RB_TYPE: FloydWarshallAlgorithm
+
+GREEDY_COLORING_HEURISTIC:
+  RB_TYPE: GreedyColoringHeuristics
+
+IMITATE_ALGORITHM:
+  RB_TYPE: ImitateAlgorithm
+
+LAYOUT_GRID:
+  RB_TYPE: LayoutGrid
+
+LOOPS:
+  RB_TYPE: Loops
+
+NEIMODE:
+  RB_TYPE: NeighborMode
+
+OPTIMALITY:
+  RB_TYPE: Optimality
+
+PAGERANKALGO:
+  RB_TYPE: PagerankAlgorithm
+
+RANDOM_TREE_METHOD:
+  RB_TYPE: RandomTreeMethod
+
+RECIP:
+  RB_TYPE: Reciprocity
+
+REWIRING_MODE:
+  RB_TYPE: Rewiring
+
+ROOTCHOICE:
+  RB_TYPE: RootChoice
+
+RWSTUCK:
+  RB_TYPE: RandomWalkStuck
+
+SPINCOMMUPDATE:
+  RB_TYPE: SpinglassUpdateMode
+
+SPINGLASS_IMPLEMENTATION:
+  RB_TYPE: SpinglassImplementation
+
+STAR_MODE:
+  RB_TYPE: StarMode
+
+SUBGRAPH_IMPL:
+  RB_TYPE: SubgraphImplementation
+
+TRANSITIVITY_MODE:
+  RB_TYPE: TransitivityMode
+
+TODIRECTED:
+  RB_TYPE: ToDirected
+
+TOUNDIRECTED:
+  RB_TYPE: ToUndirected
+
+TREE_MODE:
+  RB_TYPE: TreeMode
+
+VORONOI_TIEBREAKER:
+  RB_TYPE: VoronoiTiebreaker
+
+WHEEL_MODE:
+  RB_TYPE: WheelMode

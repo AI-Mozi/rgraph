@@ -1,0 +1,23 @@
+igraph_hypercube:
+  IGNORE: RubyFFI
+
+igraph_chung_lu_game:
+  IGNORE: RubyFFI
+
+igraph_mean_degree:
+  IGNORE: RubyFFI
+
+igraph_count_loops:
+  IGNORE: RubyFFI
+
+igraph_transitive_closure:
+  IGNORE: RubyFFI
+
+igraph_count_reachable:
+  IGNORE: RubyFFI
+
+igraph_is_clique:
+  IGNORE: RubyFFI
+
+igraph_is_independent_vertex_set:
+  IGNORE: RubyFFI

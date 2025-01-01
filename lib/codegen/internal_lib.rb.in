@@ -1,0 +1,51 @@
+require "ffi"
+
+require_relative "types"
+
+module LibC
+  extend FFI::Library
+
+  def self.load_libc
+    case RbConfig::CONFIG['host_os']
+    when /mswin|mingw|cygwin/
+      ffi_lib 'msvcrt.dll'
+    when /darwin/
+      ffi_lib 'libc.dylib'
+    when /linux/
+      ffi_lib 'libc.so.6'
+    else
+      raise 'Cannot import C standard library on this platform'
+    end
+  end
+
+  load_libc
+
+  attach_function :fclose, [:pointer], :int
+  attach_function :fflush, [:pointer], :int
+  attach_function :fdopen, [:int, :string], :pointer
+end
+
+module IgraphC
+  extend FFI::Library
+  ffi_lib :igraph
+
+  # Vector type
+
+  attach_function :igraph_vector_init, [:pointer, IGRAPH_INTEGER_T], HANDLE_IGRAPH_ERROR_T
+
+  attach_function :igraph_vector_destroy, [:pointer], :void
+
+  # Integer vector type
+
+  attach_function :igraph_vector_int_init, [:pointer, IGRAPH_INTEGER_T], HANDLE_IGRAPH_ERROR_T
+
+  attach_function :igraph_vector_int_destroy, [:pointer], :void
+
+  attach_function :igraph_vector_int_push_back, [:pointer, IGRAPH_INTEGER_T], HANDLE_IGRAPH_ERROR_T
+
+  # Bool vector type
+
+  attach_function :igraph_vector_int_init, [:pointer, IGRAPH_INTEGER_T], HANDLE_IGRAPH_ERROR_T
+
+  attach_function :igraph_vector_int_destroy, [:pointer], :void
+end
